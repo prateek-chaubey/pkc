@@ -1,0 +1,730 @@
+
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKC.com -The Future of YouTube</title>
+        <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Audiowide|Faster+One|Libre+Barcode+128+Text|Orbitron|Press+Start+2P" rel="stylesheet">
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <script type="text/javascript" src="jquery-3.1.1.js"></script>
+</head>
+<body onload="mn()" style="background-color:#fff; font-family: 'Allerta Stencil', sans-serif;">
+    <script type="text/javascript" src="jssor.slider.min.js"></script>
+    <script>
+        jssor_slider1_init = function () {
+            //Reference https://www.jssor.com/development/slider-with-slideshow.html
+            //Reference https://www.jssor.com/development/tool-slideshow-transition-viewer.html
+
+            var _SlideshowTransitions = [
+           {$Duration:1200,y:-1,$Cols:10,$Rows:5,$Clip:15,$During:{$Top:[0.5,0.5],$Clip:[0,0.5]},$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraight,$ChessMode:{$Column:12},$Opacity:2,$ScaleClip:0.5}
+           , {$Duration:1500,x:-1,y:-0.5,$Delay:50,$Cols:10,$Rows:5,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Easing:{$Left:$Jease$.$Swing,$Top:$Jease$.$InJump},$Opacity:2,$Assembly:513,$Round:{$Top:1.5}}           
+
+           ];
+
+            var options = {
+                $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
+                $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
+                $Idle: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+
+                $ArrowKeyNavigation: 1,   			            //[Optional] Steps to go for each navigation request by pressing arrow key, default value is 1.
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide, default value is 20
+                //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+                //$SlideHeight: 300,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+                $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
+                $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+
+                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
+                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
+                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
+                    $TransitionsOrder: 1                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
+                },
+
+                $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $ActionMode: 3,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $Rows: 2,                                      //[Optional] Specify lanes to arrange items, default value is 1
+                    $SpacingX: 10,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+                    $SpacingY: 10                                    //[Optional] Vertical space between each item in pixel, default value is 0
+                },
+
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                    $ChanceToShow: 1                                //[Required] 0 Never, 1 Mouse Over, 2 Always
+                },
+
+                $ThumbnailNavigatorOptions: {
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $ActionMode: 0,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $NoDrag: true,                             //[Optional] Disable drag or not, default value is false
+                    $Orientation: 2                                 //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+            /*#region responsive code begin*/
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            function ScaleSlider() {
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth)
+                    jssor_slider1.$ScaleWidth(Math.min(parentWidth, 600));
+                else
+                    $Jssor$.$Delay(ScaleSlider, 30);
+            }
+
+            ScaleSlider();
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+        
+        function sr(){
+        var ty=document.getElementById("ytqy").value;
+        window.location.href="https://m.youtube.com/results?search_query="+ty;
+        }
+    </script>
+    <style type="text/css">
+    #ytu{
+    text-align:center;
+    color:green;
+    font-size:25px;
+    background:black;
+    height:100px;
+    }
+    #ytu input{
+    color:black;
+    font-size:20px;
+    border-radius:4px;
+    }
+
+    </style>
+    <div id="mySidenav" class="sidenav">
+<a href="" ><div class="sn" ><a id="mj"  href="https://magic-pc.github.io/" >About us</a></div></a>
+<a href="" ><div class="sn" ><a id="mjr"  href="https://h4c-k3r.github.io/" >PKC.com</a></div></a>
+    <br>
+    <div id="ytu" >
+    YouTube Search<br><br>
+   <input type="text" placeholder="Type Your query" id="ytqy" >&nbsp;&nbsp;<i onclick="sr()" id="sir"  class="fa fa-search" style="font-size:30px; color:#fff" > </i>
+   </div> </div>
+    <div id="navi" >
+    <div id="container" onclick="myFunction(this)">
+    <div id="bar1"></div>
+    <div id="bar2"></div>
+    <div id="bar3"></div>
+    </div>
+    PKC.com</div>
+    <div id="pk" >
+<div id="slideshow-container">
+
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 9</div>
+  <img id="m"  src=" mj7.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 9</div>
+  <img  id="m" src=" mj6.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 9</div>
+  <img id="m"  src=" mj5.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">4 / 9</div>
+  <img  id="m" src=" mj4.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">5 / 9</div>
+  <img id="m"  src=" mj9.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">6 / 9</div>
+  <img id="m"  src=" mj1.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">7 / 9</div>
+  <img  id="m" src=" mj3.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">8 / 9</div>
+  <img id="m"  src=" mj2.png "style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div   class="mySlides fade">
+  <div class="numbertext">9 / 9</div>
+  <img id="m"  src=" mj1.png " style="width:100%">
+  <div class="text"></div>
+</div>
+
+
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+<br>
+
+<div style ="text-align:center; margin-left:30px;">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+<span class="dot" onclick="currentSlide(4)"></span>
+<span class="dot" onclick="currentSlide(5)"></span>
+<span class="dot" onclick="currentSlide(6)"></span>
+<span class="dot" onclick="currentSlide(7)"></span>
+<span class="dot" onclick="currentSlide(8)"></span>
+<span class="dot" onclick="currentSlide(9)"></span>
+
+</div>
+</div>
+    
+    
+    
+    
+    <div id="slider1_container" style="position: relative;top:50px; width: 600px;
+        height: 300px;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-009-spin" style="position:relative;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../.file/Folder/jssor.slider.devpack/svg/loading/static-svg/spin.svg" />
+        </div>
+
+        <!-- Slides Container -->
+        <div  id="slid"  data-u="slides" style="position: relative; left: 0px; top: 0px; width: 600px ;height: 300px;
+            overflow: hidden;">
+            <div>
+                <img id="im"  data-u="image" src="mj7.png" />
+                <div id="thu"  data-u="thumb">Interstellar full movie.</div>
+            </div>
+            <div>
+                <img id="im"  data-u="image" src="mj6.png" />
+                <div id="thu"  data-u="thumb">Dilbar Dilbar hit song.Lyrical.</div>
+            </div>
+            <div>
+                <img id="im"  data-u="image" src="mj5.png" />
+                <div id="thu"  data-u="thumb">Race 3 movie.</div>
+            </div>
+            <div>
+                <img id="im"  data-u="image" src="mj4.png" />
+                <div id="thu"  data-u="thumb">Aaja Na Aaja song Guru Randhawa</div>
+            </div>
+            <div>
+                <img id="im"  data-u="image" src="mj9.png" />
+                <div id="thu"  data-u="thumb">Want to know about space science?</div>
+            </div>
+            <div>
+                <img id="im"  data-u="image" src="mj1.png" />
+                <div id="thu"  data-u="thumb">Nawabzade Tresear out now.</div>
+            </div>
+            <div>
+                <img id="im"  data-u="image" src="mj3.png" />
+                <div id="thu"  data-u="thumb">Dhadak Song and trailer.</div>
+            </div>
+            <div>
+                <img id="im"  data-u="image" src="mj2.png" />
+                <div id="thu"  data-u="thumb">Golmall full movie.</div>
+            </div>
+        </div>
+        <div data-u="thumbnavigator" class="jssort09" style="position: absolute; bottom: 0px; left: 0px; height:60px; width:600px; background-color: rgba(0,0,0,.4);">
+            <div data-u="slides">
+                <div data-u="prototype" style="POSITION: absolute; WIDTH: 600px; HEIGHT: 60px; TOP: 0; LEFT: 0;">
+                    <div data-u="thumbnailtemplate" style="font-family: verdana; font-weight: normal; POSITION: absolute; WIDTH: 100%; HEIGHT: 100%; TOP: 0; LEFT: 0; color:#fff; line-height: 60px; font-size:20px; padding-left:10px;"></div>
+                </div>
+            </div>
+ 
+        </div>
+   
+        <style>
+        #bar1 ,#bar2 , #bar3 {
+        width: 50px;
+        height: 5px;
+        background-color: #880;
+        margin: 6px 0;
+        transition: 0.6s;
+        }
+        #bar2{
+        transition: .6s;
+        width:40px;
+        }
+        #container{
+        transition:0.6s;
+        position:fixed;
+        top:15px;
+        }
+        
+        .bbs{
+        margin-left:160px;
+        margin-top:370px;
+        width:100px;
+        height:50px;
+        }
+        
+        
+        
+        .sidenav {
+        height: 0%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background:rgba(0,0,0,.9);
+        overflow-x: hidden;
+        transition: 0.6s;
+        }
+        .mySlides {display:none;     width:1050px;}
+        
+        /* Slideshow container */
+        #slideshow-container {
+        position: relative;
+        top:130px;
+        }
+        
+        /* Next & previous buttons */
+        .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 45px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        }
+        
+        /* Position the "next button" to the right */
+        .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+        }
+        img{
+        height:400px;
+        width:1300px;
+        }
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+        }
+        
+        /* Caption text */
+        .text {
+        color: #f2f2f2;
+        font-size: 60px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+        }
+        
+        /* Number text (1/9 etc) */
+        .numbertext {
+        color: #f2f2f2;
+        font-size: 30px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+        }
+        
+        /* The dots/bullets/indicators */
+        .dot {
+        cursor:pointer;
+        height: 50px;
+        width: 50px;
+        margin: 0 2px;
+        margin-top:300px;
+        
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+        }
+        
+        .active, .dot:hover {
+        background-color: #717171;
+        }
+        
+        /* Fading animation */
+        .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: .2s;
+        animation-name: fade;
+        animation-duration: .2s;
+        }
+        
+        @-webkit-keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+        }
+        
+        @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+        }
+        
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+        .prev, .next,.text {font-size: 11px}
+        
+        }
+        .nav{
+        height:350px;
+        }
+        .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #fff;
+        display: block;
+        transition: 0.3s;
+        }
+        .sidenav a:hover, a:focus{
+        color: #f1f1f1;
+        }
+        body{background:#000;padding:0;margin:0;}
+        #navi{color:#fff;font-family: 'Audiowide', cursive;font-size:40px;line-height:70px;text-align:center;width:100%; height:70px;background:#000;position:fixed;top:0;}
+            .jssorb051 .i {position:absolute;cursor:pointer;}
+            .jssorb051 .i .b {fill:#fff;fill-opacity:0.5;stroke:#000;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.5;}
+            .jssorb051 .i:hover .b {fill-opacity:.7;}
+            .jssorb051 .iav .b {fill-opacity: 1;}
+            .jssorb051 .i.idn {opacity:.3;}
+        </style>
+        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:16px;right:10px;" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <style>
+        *{
+        padding:0;
+        margin:0;
+        }
+        .change #bar1 {
+        transform: rotate(-405deg)
+        translate(-9px, 6px) ;
+        background:#900;
+        }
+        .change #bar2 {opacity: 0; background:#899;}
+        .change #bar3 {
+        transform: rotate(405deg)
+        translate(-8px, -8px) ;
+        background:#900;
+        }
+            .jssora051 {display:block;position:absolute;cursor:pointer;}
+            .jssora051 .a {fill:none;stroke:#f80;stroke-width:1200;stroke-miterlimit:10;}
+            .jssora051:hover {opacity:.8;}
+            .jssora051.jssora051dn {opacity:.5;}
+            .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+        </style>
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg  viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline  class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>    
+        <script>
+            jssor_slider1_init();
+            $(window).on("scroll", function() {
+            if($(window).scrollTop()) {
+            $('#navi').addClass('green');
+            $('#navi').css({"background":"rgba(150,150,0,.8)"});
+                $('#navi').css({"color":"black"});
+            }
+            
+            else {
+            $('#navi').removeClass('green');
+            $('#navi').css({"color":"white"});
+                $('#navi').css({"background":"black"});
+            }
+            })
+            function myFunction(x) {
+            
+          if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            x.classList.toggle("change");
+            document.getElementById("container").classList.toggle("bbs");
+            document.getElementById("mySidenav").classList.toggle("nav");
+            
+          }else{
+            x.classList.toggle("change");
+            document.getElementById("container").classList.toggle("bbss");        
+            document.getElementById("mySidenav").classList.toggle("naaa");
+            }}
+            var ty="magic-pc.github.io/pkc";
+        </script>
+    </div>
+<!-- BEGIN MY SECTION   -->
+<!-- BEGIN MY SECTION   -->
+<!-- BEGIN MY SECTION   -->
+<!-- BEGIN MY SECTION   -->
+
+    <style type="text/css">
+    .green #bar1{
+    background:#000;
+    }
+    .green #bar2{
+    background:#000;
+    }
+    .green #bar3{
+    background:#000;
+    }
+.bbss{
+margin-left:500px;
+margin-top:1320px;
+}
+    .green {
+    background:#rgba(255,255,255,.8);
+    position:fixed;
+    width:100%;
+    height:75px;
+    transition:.6s;
+    }
+    #fr{
+    margin-top:60px;
+    width:355px;
+    }
+    #ti,#tr{
+text-align:left;
+color:black;
+font-size:40px;
+    }
+    #tr{
+    text-align:center;
+    color:#880;
+    font-size:30px;
+    }
+    .content{
+    background:#880;
+    width:100%;
+    height:140px;
+    color:silver;
+    font-size:15px;
+    }
+    #hla,#hlaa,#hlaaa{
+    font-size:20px;
+    }
+    .h{
+    color:black;
+    font-size:20px;
+    padding:0;
+    
+    }
+    a{
+    text-decoration:none;
+    color:silver;
+    }
+    #tr a{
+    color:#880;
+    }
+    .foot{
+    color:green;
+    text-align:center;
+    font-size:30px;
+    }
+    .naaa{
+    height:1300px;
+    }
+    #pk{display:none;}
+    </style>
+    <div id="fr" >
+<div id="ti" >Trending Keywords</div><br>
+<div id="tr" >  Race 3<br>
+ Dilbar Dilbar full song<br>
+ Dhadak treaser <br>
+ <a href="https://drive.google.com/file/d/1C3dx5jBGEBpB-Y7khhEOmH9DePO9UMZH/view" >Interstellar</a>
+</div>
+</div><br>
+
+    <iframe style="border:0" id="if"   width="100%"   height="200px" src="https://www.youtube.com/embed/xBht9TG7ySw?&showinfo=0&autoplay=1&HD=1&rel=0" allowfullscreen></iframe>  
+    <div class="content "  id="wh" >
+    <div class="h" id="hw" >
+Race 3 | Official Trailer | Salman Khan | Remo D'Souza | Releasing on 15th June 2018 | #Race3ThisEID
+    </div>
+    Salman Khan Films 53,002,960 views
+    <br><br>
+    <div id="hlaaa" >
+     &nbsp;&nbsp;
+  <a href="https://m.youtube.com/watch?v=xBht9TG7ySw" >  <i class="fa fa-thumbs-o-up" ></i> </a>659K
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="https://m.youtube.com/watch?v=xBht9TG7ySw" > <i class="fa fa-flip-horizontal  fa-thumbs-o-down" ></i> </a>211K
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="https://m.youtube.com/watch?v=xBht9TG7ySw" > <i class="fa fa-download" ></i></a>&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;
+    <i class="fa fa-mail-forward" onclick="alert(ty)"></i>
+ </div></div>
+
+ 
+ 
+
+ 
+ <iframe style="border:0"  id="iff"  width="100%"   height="200" src="https://www.youtube.com/embed/JFcgOboQZ08?&showinfo=0&autoplay=1&HD=1&rel=0" allowfullscreen></iframe>  
+ 
+ <div class="content " id="whh" >
+ <div class="h" id="hww" >
+DILBAR Lyrical | Satyameva Jayate |John Abraham, Nora Fatehi,Tanishk B, Neha Kakkar,Dhvani, Ikka
+ </div>
+T-Series 55,496,017 views
+ <br><br><div id="hlaa" >
+  &nbsp;&nbsp;&nbsp;
+   <a href="https://m.youtube.com/watch?v=JFcgOboQZ08" >  <i class="fa fa-thumbs-o-up" ></i> </a>623K
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://m.youtube.com/watch?v=JFcgOboQZ08" > <i class="fa fa-flip-horizontal  fa-thumbs-o-down" ></i></a> 76K
+&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <a href="https://m.ssyoutube.com/watch?v=JFcgOboQZ08" target="_blank" >  <i class="fa fa-download" ></i></a>&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;
+ <i class="fa fa-mail-forward" onclick="alert(ty)"></i>
+  </div></div>
+  
+
+  <iframe style="border:0"  id="ifff"  width="100%"   height="200" src="https://www.youtube.com/embed/TIE92mUvSsw?&showinfo=0&autoplay=1&HD=1&rel=0" allowfullscreen></iframe>  
+  <div class="content " id="whhh"  >
+  <div class="h" id="hwww" >
+Dhadak | Official Trailer | Janhvi & Ishaan | Shashank Khaitan | Karan Johar
+  </div>
+Dharma Productions 48,250,575 views
+  <br><br>
+  <div id="hla" >
+  &nbsp;&nbsp;&nbsp;
+  <a   href="https://m.youtube.com/watch?v=TIE92mUvSsw" >  <i class="fa fa-thumbs-o-up" ></i> </a>449K
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a   href="https://m.youtube.com/watch?v=TIE92mUvSsw" ><i class="fa fa-flip-horizontal  fa-thumbs-o-down" ></i> </a>31K
+&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a   href="https://m.ssyoutube.com/watch?v=TIE92mUvSsw" target="_blank" >  <i class="fa fa-download" ></i></a>&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;
+  <i   class="fa fa-mail-forward" onclick="alert(ty)"></i>
+  </div></div>
+  <br>
+  <div class="foot" >
+<a href="https://m.youtube.com" style="color:green" >  <i class="fa fa-youtube" style="font-size:30px" ></i></a><br>
+  © 2018-50 PKC Inc.</div>
+</body>
+<script type="text/javascript">
+function mn(){
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+}else{
+document.getElementById("navi").style.height="150px";
+document.getElementById("navi").style.fontSize="80px";
+document.getElementById("navi").style.lineHeight="150px";
+document.getElementById("slider1_container").style.display="none";
+document.getElementById("pk").style.display="block";
+document.getElementById("slideshow-container").style.height="200px";
+document.getElementById("slideshow-container").style.width="1000px";
+document.getElementById("bar1").style.width="100px";
+document.getElementById("bar3").style.width="100px";
+document.getElementById("bar2").style.width="80px";
+document.getElementById("bar1").style.height="15px";
+document.getElementById("container").style.top="35px";
+document.getElementById("tr").style.fontSize="60px";
+document.getElementById("ti").style.fontSize="60px";
+document.getElementById("fr").style.width="1000px";
+document.getElementById("if").style.height="450px";
+document.getElementById("iff").style.height="450px";
+document.getElementById("ifff").style.height="450px";
+document.getElementById("if").style.width="1050px";
+document.getElementById("iff").style.width="1050px";
+document.getElementById("ifff").style.width="1050px";
+document.getElementById("bar3").style.height="15px";
+document.getElementById("bar2").style.height="15px";
+document.getElementById("mj").style.fontSize="60px";
+document.getElementById("mjr").style.fontSize="60px";
+document.getElementById("ytqy").style.width="700px";
+document.getElementById("ytqy").style.height="70px";
+document.getElementById("ytu").style.height="200px";
+document.getElementById("sir").style.fontSize="50px";
+document.getElementById("ytu").style.fontSize="50px";
+document.getElementById("ytqy").style.fontSize="50px";
+document.getElementById("ytqy").style.borderRadius="15px";
+document.getElementById("wh").style.height="350px";
+document.getElementById("whh").style.height="350px";
+document.getElementById("whhh").style.height="350px";
+document.getElementById("wh").style.width="1050px";
+document.getElementById("whh").style.width="1050px";
+document.getElementById("whhh").style.width="1050px";
+document.getElementById("hw").style.fontSize="50px";
+document.getElementById("hww").style.fontSize="50px";
+document.getElementById("hwww").style.fontSize="50px";
+document.getElementById("wh").style.fontSize="40px";
+document.getElementById("whh").style.fontSize="40px";
+document.getElementById("whhh").style.fontSize="40px";
+document.getElementById("hla").style.fontSize="50px";
+document.getElementById("hlaa").style.fontSize="50px";
+document.getElementById("hlaaa").style.fontSize="50px";
+
+}}
+
+
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+var slideIndex = 0;
+showSides();
+
+function showSides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex> slides.length) {slideIndex = 1}
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSides, 5000); 
+}
+</script>
+</html>
+<!--nawab https://youtu.be/7G77hHNBO8w
+dhadak https://youtu.be/TIE92mUvSsw-->
